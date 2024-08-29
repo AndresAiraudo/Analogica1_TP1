@@ -3,6 +3,7 @@
 %Paquetes necesarios
 \usepackage[utf8]{inputenc}
 %Para acentos y otros caracteres
+\usepackage[spanish]{babel}
 \usepackage{graphicx}
 %Para insertar imagenes
 \usepackage{amsmath}
@@ -11,8 +12,6 @@
 %Para símbolos matemáticos
 \usepackage{hyperref}
 %Para enlaces y referencias
-
-
 
 
 % Title Page
@@ -64,4 +63,4 @@
 	\section{Conclusión}
 	Resume las conclusiones del trabajo.
 	
-\end{document}
+\end{document}       
