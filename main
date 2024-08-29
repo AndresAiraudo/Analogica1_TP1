@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{article}%12
 
 %Paquetes necesarios
 \usepackage[utf8]{inputenc}
@@ -12,7 +12,8 @@
 %Para símbolos matemáticos
 \usepackage{hyperref}
 %Para enlaces y referencias
-
+\usepackage{enumitem}
+%Para enumerar items
 
 % Title Page
 \title{\textbf{Fuentes de tensión reguladas y no reguladas.}}
@@ -52,8 +53,53 @@
 	\end{enumerate}
 	
 	\section{Metodología}
-	Describir la metodología utilizada.
-	
+	El proceso se dividió en varias etapas, cada una de las cuales se describe a continuación:
+		\begin{enumerate}[label=\textbf{\alph*)}]
+			\item \textbf{{\large Diseño del rectificador de onda completa.}}
+			\begin{itemize}
+				\item \textbf{Selección de componentes:} \newline
+				Se seleccionaron los componentes principales del circuito rectificador, incluyendo el transformador, los diodos y el capacitor de filtrado. La selección se realizó utilizando el procedimiento de Schade, teniendo en cuenta los parámetros eléctricos como la corriente media por diodo y las especificaciones de la carga.
+				\item \textbf{Cálculo teórico:} \newline
+				Se calcularon los valores teóricos de la corriente, la tensión y el rizado esperado en la salida del rectificador. Estos cálculos sirvieron como base para la simulación y la implementación.
+			\end{itemize}
+			\item \textbf{{\large Simulación del circuito rectificador.}}
+			\begin{itemize}
+				\item \textbf{Software utilizado:} \newline
+				Se utilizó el software de simulación Multisim para modelar el comportamiento del rectificador de onda completa.
+				\item \textbf{Parámetros de simulación:} \newline
+				Se definieron los parámetros de simulación para obtener el comportamiento de la tensión de salida, el rizado y la eficiencia del filtrado en diferentes condiciones de carga.
+			\end{itemize}
+			\item \textbf{{\large Implementación de reguladores de tensión.}}
+			\begin{itemize}
+				\item \textbf{Regulador con diodo Zener:} \newline
+				Se diseñó un regulador paralelo con un diodo Zener, seleccionando el diodo adecuado para obtener la tensión de salida requerida.
+				\item \textbf{Regulador con Zener y seguidor de emisor:} \newline
+				Se implementó un regulador utilizando un diodo Zener y un transistor en configuración de seguidor de emisor, con el objetivo de mejorar la estabilidad de la tensión de salida.
+				\item \textbf{Regulador lineal de tres terminales:} \newline
+				Se construyó un regulador utilizando un circuito integrado LM317 configurado para obtener una tensión de salida ajustable.
+			\end{itemize}
+			\item \textbf{{\large Simulación de los reguladores de tensión.}}
+			\begin{itemize}
+				\item \textbf{Modelado y simulación:} \newline
+				Cada uno de los reguladores diseñados fue modelado y simulado utilizando el mismo software que el rectificador. Se evaluaron la regulación de carga, la regulación de línea y el rechazo de rizado bajo diferentes condiciones.
+			\end{itemize}
+			\item \textbf{{\large Montaje y pruebas en el laboratorio.}}
+			\begin{itemize}
+				\item \textbf{Construcción del circuito:} \newline
+				Se ensamblaron los circuitos diseñados utilizando una protoboard.
+				\item \textbf{Medición de parámetros:} \newline
+				En el laboratorio, se midieron los parámetros clave como la tensión de salida, el rizado, la regulación de carga y la regulación de línea. Se utilizaron instrumentos como osciloscopio, multímetro y un autotransformador para variar las condiciones de entrada y observar el comportamiento del sistema.
+				\item \textbf{Comparación con resultados teóricos y simulados:} \newline
+				Los resultados experimentales fueron comparados con los valores teóricos y simulados para validar el diseño y ajustar cualquier discrepancia.
+			\end{itemize}
+			\item \textbf{{\large Análisis de resultados.}}
+			\begin{itemize}
+				\item \textbf{Evaluación del desempeño:} \newline
+				Se analizaron los resultados obtenidos para determinar la eficiencia y efectividad de cada regulador implementado.
+				\item \textbf{Discusión de errores y mejoras:} \newline
+				Se identificaron posibles fuentes de error en las mediciones y se propusieron mejoras en el diseño para optimizar el rendimiento de los circuitos.
+			\end{itemize}
+		\end{enumerate}
 	\section{Resultados}
 	Presentar los resultados obtenidos. Se pueden incluir tablas, gráficos o imágenes.
 	
@@ -63,4 +109,4 @@
 	\section{Conclusión}
 	Resume las conclusiones del trabajo.
 	
-\end{document}       
+\end{document}
