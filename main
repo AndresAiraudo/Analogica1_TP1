@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+
+%Paquetes necesarios
+\usepackage[utf8]{inputenc}
+%Para acentos y otros caracteres
+\usepackage{graphicx}
+%Para insertar imagenes
+\usepackage{amsmath}
+%Para fórmulas matemáticas
+\usepackage{amssymb}
+%Para símbolos matemáticos
+\usepackage{hyperref}
+%Para enlaces y referencias
+
+
+
+
+% Title Page
+\title{\textbf{Fuentes de tensión reguladas y no reguladas.}}
+\author{Antonella Attem, Juan Ignacio Perez Castro, Andres Airaudo.}
+
+
+\begin{document}
+	\maketitle
+	
+	%Tabla de contenido
+	\tableofcontents
+	
+	\newpage
+	
+	\section{Introducción}
+	El presente trabajo práctico tiene como objetivo diseñar e implementar un sistema de alimentación basado en rectificadores y reguladores de tensión, abordando tanto las fuentes reguladas como no reguladas. Se explorarán diversas configuraciones de circuitos con el fin de estabilizar y regular la tensión de salida, garantizando un suministro estable y confiable para aplicaciones electrónicas. \newline
+	El trabajo se centrará en la implementación de un rectificador de onda completa con filtro capacitivo, utilizando el procedimiento de Schade para la selección de los componentes. Además, se desarrollarán tres tipos de reguladores: un regulador paralelo con diodo Zener, un regulador con Zener y seguidor de emisor, y un regulador lineal de tres terminales. Cada uno de los circuitos será analizado y probado para evaluar su desempeño en términos de regulación de tensión y rechazo de rizado. \newline
+	Este informe documenta los cálculos, simulaciones y mediciones experimentales realizados, proporcionando una visión integral del diseño y funcionamiento de las fuentes de tensión estudiadas.
+	
+	\section{Objetivos}
+	\begin{enumerate}
+		\item \textbf{Diseñar e implementar un rectificador de onda completa con filtro capacitivo.} Utilizando el procedimiento de Schade, se debe seleccionar el transformador, los diodos de rectificación y el capacitor de filtrado, justificando la elección de cada componente. La corriente media por diodo debe ser mayor o igual a 300 mA.
+		
+		\item \textbf{Diseñar e implementar varios tipos de reguladores de tensión} para ser conectados después del circuito rectificador. Los reguladores deben tener una tensión de salida igual o mayor a 5 V. Los tipos de reguladores a diseñar son:
+		\begin{itemize}
+			\item Regulador tipo paralelo con diodo Zener.
+			\item Regulador con Zener y seguidor de emisor.
+			\item Regulador lineal de tres terminales tipo <78xx o LM317 (puede ser tensión variable o fija).
+		\end{itemize}
+		\item \textbf{Medir y analizar el rendimiento de los circuitos implementados.}
+		\begin{itemize}
+			\item Medir el punto de operación en continua.
+			\item Evaluar el factor de rechazo de rizado.
+			\item Realizar la regulación de carga (variando la resistencia de carga).
+			\item Realizar la regulación de línea (variando el voltaje del primario del transformador utilizando un autotransformador).
+		\end{itemize}
+	\end{enumerate}
+	
+	\section{Metodología}
+	Describir la metodología utilizada.
+	
+	\section{Resultados}
+	Presentar los resultados obtenidos. Se pueden incluir tablas, gráficos o imágenes.
+	
+	\section{Discusión}
+	Análisis de los resultados y comparación con la teoría o trabajos previos.
+	
+	\section{Conclusión}
+	Resume las conclusiones del trabajo.
+	
+\end{document}
