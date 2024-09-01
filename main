@@ -18,6 +18,7 @@
 % Title Page
 \title{\textbf{Fuentes de tensión reguladas y no reguladas.}}
 \author{Antonella Attem, Juan Ignacio Perez Castro, Andres Airaudo.}
+\date{}
 
 
 \begin{document}
@@ -34,7 +35,7 @@
 	Este informe documenta los cálculos, simulaciones y mediciones experimentales realizados, proporcionando una visión integral del diseño y funcionamiento de las fuentes de tensión estudiadas.
 	
 	\section{Objetivos}
-	\begin{enumerate}
+	\begin{enumerate}[label=\textbf{\alph*)}]
 		\item \textbf{Diseñar e implementar un rectificador de onda completa con filtro capacitivo.} Utilizando el procedimiento de Schade, se debe seleccionar el transformador, los diodos de rectificación y el capacitor de filtrado, justificando la elección de cada componente. La corriente media por diodo debe ser mayor o igual a 300 mA.
 		
 		\item \textbf{Diseñar e implementar varios tipos de reguladores de tensión} para ser conectados después del circuito rectificador. Los reguladores deben tener una tensión de salida igual o mayor a 5 V. Los tipos de reguladores a diseñar son:
@@ -103,8 +104,8 @@
 	\section{Resultados}
 	Presentar los resultados obtenidos. Se pueden incluir tablas, gráficos o imágenes.
 	
-	\section{Discusión}
-	Análisis de los resultados y comparación con la teoría o trabajos previos.
+	%\section{Discusión}
+	%Análisis de los resultados y comparación con la teoría o trabajos previos.
 	
 	\section{Conclusión}
 	Resume las conclusiones del trabajo.
