@@ -1,113 +1,325 @@
-\documentclass[12pt]{article}%12
+\documentclass[11pt]{article}
 
-%Paquetes necesarios
-\usepackage[utf8]{inputenc}
-%Para acentos y otros caracteres
-\usepackage[spanish]{babel}
-\usepackage{graphicx}
-%Para insertar imagenes
+\title{Título del documento}
+\date{Fecha}
+\author{Nombre del Autor}
+
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{setspace}
+\setstretch{1.0}
 \usepackage{amsmath}
-%Para fórmulas matemáticas
-\usepackage{amssymb}
-%Para símbolos matemáticos
-\usepackage{hyperref}
-%Para enlaces y referencias
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
 \usepackage{enumitem}
-%Para enumerar items
-
-% Title Page
-\title{\textbf{Fuentes de tensión reguladas y no reguladas.}}
-\author{Antonella Attem, Juan Ignacio Perez Castro, Andres Airaudo.}
-\date{}
-
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{float}
 
 \begin{document}
-	\maketitle
-	
-	%Tabla de contenido
-	\tableofcontents
-	
-	\newpage
-	
+	\pagestyle{fancy}
+	\fancyhf{}
+	\fancyfoot[R]{\thepage}
+	\fancyhead[L]
+	{\includegraphics[width=0.2\textwidth]{img/FCEFyN}}
+	\fancyhead[R]
+	{\includegraphics[width=0.2\textwidth]{img/unc1_b}}
+	\begin{titlepage}
+		\begin{figure}
+			{\raggedright %Figura alineada a la izquierda.
+				\includegraphics[width=0.3\textwidth]{img/FCEFyN}} \hfill
+			{\raggedleft
+				\includegraphics[width=0.3\textwidth]{img/unc1_b}
+			}
+		\end{figure}
+		%Centra el texto
+		\centering
+		%Incluye una imagen en la portad
+		%{\includegraphics[width=0.2\textwidth]{imagenes\logo}\par}
+		\vspace{1cm}
+		%\bfseries muestra el texto en negrita
+		%\LARGE Tamaño de texto
+		{\bfseries\LARGE UNC - FCEFyN \par}
+		%\vspace crea un espaciado vertical entre los parrafos con el tamaño especificado
+		%\par Define que debe crearse un parrafo nuevo
+		\vspace{1cm}
+		%\scshape Es para escribir el texto en mayusculas pequeñas
+		{\scshape\Large Electrónica Analógica 1 \par}
+		\vspace{1cm}
+		{\scshape\Huge Fuentes de tensión reguladas y no reguladas \par}
+		\vspace{1cm}
+		%\itshape Coloca el texto en Italic
+		{\itshape\Large Trabajo Pr\'actico N° 1 \par}
+		%\vfill rellena el espacio para ocupar toda la página
+		\vspace{1cm}
+		%{\Large Autor: \par}
+		{\Large Grupo N° 14 \par}
+		{\Large 
+			\begin{table}[h]
+				\begin{center}
+					\begin{tabular}{| c | c | c |}
+						\hline
+						Nombre & DNI \\ \hline
+						Airaudo, Victor Andres & 39660485 \\
+						Attem Carini, María Antonella & 41321136 \\
+						Perez Castro, Juan Ignacio & 43496981 \\
+						\hline
+					\end{tabular} \par
+					\vspace{.5cm}
+					{\Large 2024 \par}
+				\end{center}
+			\end{table}
+		}
+		\vfill
+	\end{titlepage}
+	\tableofcontents \newpage
 	\section{Introducción}
-	El presente trabajo práctico tiene como objetivo diseñar e implementar un sistema de alimentación basado en rectificadores y reguladores de tensión, abordando tanto las fuentes reguladas como no reguladas. Se explorarán diversas configuraciones de circuitos con el fin de estabilizar y regular la tensión de salida, garantizando un suministro estable y confiable para aplicaciones electrónicas. \newline
-	El trabajo se centrará en la implementación de un rectificador de onda completa con filtro capacitivo, utilizando el procedimiento de Schade para la selección de los componentes. Además, se desarrollarán tres tipos de reguladores: un regulador paralelo con diodo Zener, un regulador con Zener y seguidor de emisor, y un regulador lineal de tres terminales. Cada uno de los circuitos será analizado y probado para evaluar su desempeño en términos de regulación de tensión y rechazo de rizado. \newline
-	Este informe documenta los cálculos, simulaciones y mediciones experimentales realizados, proporcionando una visión integral del diseño y funcionamiento de las fuentes de tensión estudiadas.
+	En este trabajo práctico se abordará el diseño, implementación y análisis de circuitos rectificadores y reguladores de tensión. Los objetivos incluyen entender los fundamentos de rectificación, filtrado y regulación de tensiones, así como validar los diseños mediante cálculos teóricos, simulaciones y mediciones prácticas. \par
+	El procedimiento se centrará en la implementación de un rectificador de onda completa con filtro capacitivo utilizando el método de Schade, y la posterior inclusión de diversos reguladores para garantizar una tensión estable de salida. \par
 	
-	\section{Objetivos}
-	\begin{enumerate}[label=\textbf{\alph*)}]
-		\item \textbf{Diseñar e implementar un rectificador de onda completa con filtro capacitivo.} Utilizando el procedimiento de Schade, se debe seleccionar el transformador, los diodos de rectificación y el capacitor de filtrado, justificando la elección de cada componente. La corriente media por diodo debe ser mayor o igual a 300 mA.
-		
-		\item \textbf{Diseñar e implementar varios tipos de reguladores de tensión} para ser conectados después del circuito rectificador. Los reguladores deben tener una tensión de salida igual o mayor a 5 V. Los tipos de reguladores a diseñar son:
+	\section{Enunciado}
+	El trabajo práctico consiste en las siguientes etapas:
+	\begin{enumerate}
+		%1
+		\item \textbf{Diseñar e implementar} un rectificador de onda completa con filtro capacitivo, utilizando el método de Schade. La selección del transformador, diodos y capacitor debe justificarse, garantizando una corriente media por diodo mayor o igual a 300 mA.
+		%2
+		\item \textbf{Diseñar e implementar} reguladores de tensión para el circuito anterior, asegurando una tensión de salida igual o mayor a 5 V. Los reguladores a implementar son:
 		\begin{itemize}
-			\item Regulador tipo paralelo con diodo Zener.
+			\item Regulador paralelo con diodo Zener.
 			\item Regulador con Zener y seguidor de emisor.
-			\item Regulador lineal de tres terminales tipo <78xx o LM317 (puede ser tensión variable o fija).
+			\item Regulador lineal (78xx o LM317).
 		\end{itemize}
-		\item \textbf{Medir y analizar el rendimiento de los circuitos implementados.}
+		%3
+		\item Evaluar el desempeño de los circuitos mediante cálculos teóricos, simulaciones y mediciones, considerando:
 		\begin{itemize}
-			\item Medir el punto de operación en continua.
-			\item Evaluar el factor de rechazo de rizado.
-			\item Realizar la regulación de carga (variando la resistencia de carga).
-			\item Realizar la regulación de línea (variando el voltaje del primario del transformador utilizando un autotransformador).
-		\end{itemize}
+			\item Punto de operación en continua.
+			\item Factor de rechazo de rizado.
+			\item Regulación de carga (variación de la resistencia de carga).
+			\item Regulación de línea (variación del voltaje primario del transformador mediante un autotransformador).
+		\end{itemize} 
+		
 	\end{enumerate}
-	
-	\section{Metodología}
-	El proceso se dividió en varias etapas, cada una de las cuales se describe a continuación:
-		\begin{enumerate}[label=\textbf{\alph*)}]
-			\item \textbf{{\large Diseño del rectificador de onda completa.}}
+	\newpage
+	\section{Desarrollo}
+	\begin{enumerate}
+		%1
+		\item \textbf{\textit{\large Diseño del rectificador de onda completa con filtro capacitivo}}
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=\textwidth]{img/EsquemaRectificadorOndaCompleta.jpg}
+				\caption{Esquema Rectificador de onda Completa}
+				\label{fig:rectificador_de_onda_completa}
+			\end{figure}
+			
+			\textbf{Selección de componentes:}
+			
 			\begin{itemize}
-				\item \textbf{Selección de componentes:} \newline
-				Se seleccionaron los componentes principales del circuito rectificador, incluyendo el transformador, los diodos y el capacitor de filtrado. La selección se realizó utilizando el procedimiento de Schade, teniendo en cuenta los parámetros eléctricos como la corriente media por diodo y las especificaciones de la carga.
-				\item \textbf{Cálculo teórico:} \newline
-				Se calcularon los valores teóricos de la corriente, la tensión y el rizado esperado en la salida del rectificador. Estos cálculos sirvieron como base para la simulación y la implementación.
+				\item \textbf{Transformador:} $1A$, $220V-12V$
+				\item \textbf{Diodos:} 1N4007
+				\item \textbf{Capacitor:} Electrolítico $1000 \mu$$F$ $50V$
 			\end{itemize}
-			\item \textbf{{\large Simulación del circuito rectificador.}}
-			\begin{itemize}
-				\item \textbf{Software utilizado:} \newline
-				Se utilizó el software de simulación Multisim para modelar el comportamiento del rectificador de onda completa.
-				\item \textbf{Parámetros de simulación:} \newline
-				Se definieron los parámetros de simulación para obtener el comportamiento de la tensión de salida, el rizado y la eficiencia del filtrado en diferentes condiciones de carga.
-			\end{itemize}
-			\item \textbf{{\large Implementación de reguladores de tensión.}}
-			\begin{itemize}
-				\item \textbf{Regulador con diodo Zener:} \newline
-				Se diseñó un regulador paralelo con un diodo Zener, seleccionando el diodo adecuado para obtener la tensión de salida requerida.
-				\item \textbf{Regulador con Zener y seguidor de emisor:} \newline
-				Se implementó un regulador utilizando un diodo Zener y un transistor en configuración de seguidor de emisor, con el objetivo de mejorar la estabilidad de la tensión de salida.
-				\item \textbf{Regulador lineal de tres terminales:} \newline
-				Se construyó un regulador utilizando un circuito integrado LM317 configurado para obtener una tensión de salida ajustable.
-			\end{itemize}
-			\item \textbf{{\large Simulación de los reguladores de tensión.}}
-			\begin{itemize}
-				\item \textbf{Modelado y simulación:} \newline
-				Cada uno de los reguladores diseñados fue modelado y simulado utilizando el mismo software que el rectificador. Se evaluaron la regulación de carga, la regulación de línea y el rechazo de rizado bajo diferentes condiciones.
-			\end{itemize}
-			\item \textbf{{\large Montaje y pruebas en el laboratorio.}}
-			\begin{itemize}
-				\item \textbf{Construcción del circuito:} \newline
-				Se ensamblaron los circuitos diseñados utilizando una protoboard.
-				\item \textbf{Medición de parámetros:} \newline
-				En el laboratorio, se midieron los parámetros clave como la tensión de salida, el rizado, la regulación de carga y la regulación de línea. Se utilizaron instrumentos como osciloscopio, multímetro y un autotransformador para variar las condiciones de entrada y observar el comportamiento del sistema.
-				\item \textbf{Comparación con resultados teóricos y simulados:} \newline
-				Los resultados experimentales fueron comparados con los valores teóricos y simulados para validar el diseño y ajustar cualquier discrepancia.
-			\end{itemize}
-			\item \textbf{{\large Análisis de resultados.}}
-			\begin{itemize}
-				\item \textbf{Evaluación del desempeño:} \newline
-				Se analizaron los resultados obtenidos para determinar la eficiencia y efectividad de cada regulador implementado.
-				\item \textbf{Discusión de errores y mejoras:} \newline
-				Se identificaron posibles fuentes de error en las mediciones y se propusieron mejoras en el diseño para optimizar el rendimiento de los circuitos.
-			\end{itemize}
+			\textbf{Cálculos (Método de Schade):} \par
+			\underline{Especificación}: 300 $mA$ de corriente media por diodo. \par
+			\underline{Suposición}: Voltaje a la salida del rectificador $V_{out} = 15 V$. \par
+			Entonces: $$R_L = \frac{V_{out}}{Corriente\ media\ en\ la\ carga} = \frac{15V}{600mA} \approx 25 \Omega $$ \par
+			Como disponemos de un capacitor de $1000\mu$$F$ y un transformador de $1A$ con una salida de secundario de $V_s = 13,2 V\ RMS$, vamos a entrar en las curvas de Schade de tal forma que no obtengamos los valores de los componentes, sino que vamos a verificar que estos componentes cumplan con las especificaciones dadas.
+			$$\omega \ C\ R_L = 2\pi f\ 1000\mu F\ 25\Omega = 2\pi 50Hz\ 1000\mu F\ 25\Omega=7,9$$ \par
+			Como sabemos el valor pico de voltaje en el secundario de nuestro transformador y el capacitor a utilizar, iniciamos entrando a la 2$^{da}$ gráfica de Schade (para onda completa) y de la misma obtenemos la curva que mejor se ajusta a estos datos y así también obtener $R_s$. \par
+			El valor pico del secundario del transformador es: $$13,2V\ \sqrt{2} = 18,7V \Rightarrow \frac{V_{med}}{V_{PL}}\ 100 =86,7\%$$ 
+			Donde $V_{med}$ es el $V_o=15V$ requerido a la salida del rectificador y  $$V\ Pico\ Transformador - Caida\ en\ los\ diodos = 18,7V - 1,4V=17,3V$$ 
+			Entramos a la curva con estos datos:
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{img/Schade2.jpg}
+				\caption{2da Curva de Schade para Onda Completa}
+				\label{fig:curva_de_schade_2_para_onda_completa}
+			\end{figure}
+			Este paso nos indica que la curva que mejor se ajusta a los elementos que disponemos es: $$\frac{R_S}{R_L}[\%] = 2\%$$
+			$$\Rightarrow R_s= \frac{2\ R_L}{100} = \frac{50}{100} = 0,5\Omega$$
+			Lo que es muy aproximado, ya que la resistencia medida en el secundario del transformador que disponemos es de $0,8\Omega$ \par
+			Con estos datos entramos a la primer tabla de Schade:
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{img/Schade1.jpg}
+				\caption{1er Curva de Schade para Onda Completa}
+				\label{fig:curva_de_schade_1_para_onda_completa}
+			\end{figure}
+			De esta forma obtenemos un porcentaje de ripple $= 8\%$
+			
+			\newpage
+			
+			Ahora procedemos a entrar a la siguiente tabla de Schade y calculamos la corriente pico en los diodos:
+			$$\frac{R_S}{n\ R_L}[\%]=\frac{0,5\Omega}{2.\ 25\Omega}.100=1\%$$
+			$$n\ \omega \ C\ R_L=2\ .\ 7,9=15,8$$
+			Donde $n=2$ por trabajar con onda completa.
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{img/Schade31.jpg}
+				\caption{3er Curva de Schade para Onda Completa}
+				\label{fig:curva_de_schade_31_para_onda_completa}
+			\end{figure}
+			$$\frac{I_{D(RMS)}}{I_{D(med)}}=2,7$$
+			$$\Rightarrow I_{D(RMS)}=2,7.\ \dfrac{I_{L(med)}}{2}=0,81A$$
+			Donde: $$I_{D(med)}=\dfrac{I_{L(med)}}{2}=300mA$$
+			$$I_{L(med)}=\frac{V_{out}}{25\Omega}=\frac{15V}{25\Omega}=0,6A=600mA$$
+			Por lo tanto: $$P_D = I_{D(med)}\ V_D =300mA\ 0,7V=210mW$$
+			
+			Donde $P_D$ es la potencia que debe manejar cada diodo. \par
+			
+			Con la siguiente curva obtenemos la corriente repetitiva por el diodo.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{img/Schade32.jpg}
+				\caption{3er Curva de Schade para Onda Completa}
+				\label{fig:curva_de_schade_32_para_onda_completa}
+			\end{figure}
+			$$\frac{I_{DP}}{I_{Dmed}}=9$$
+			$$\Rightarrow I_{DP}=9\ .\ I_{Dmed}=9\ .\ 300mA=2,7A$$
+			Según lo calculado, requerimos diodos que soporten una corriente repetitiva de $2,7A$. \par
+			 La corriente NO repetitiva es: $$I_{DP(NR)}=\frac{18,7V}{R_S}=\frac{18,7V}{0,5\Omega}=37,4A$$
+			 Sin embargo, ya que la resistencia $R_S$ medida en el secundario del transformador es de $0,8\Omega$, entonces la corriente pico no repetitiva sería $23,4A$. Por lo tanto, el diodo 1N4007 cumple con las especificaciones ya que soporta hasta $30A$.\par
+			 
+			 Link del datasheet 1N4007:\par  \url{https://www.alldatasheet.com/html-pdf/399565/EIC/1N4007/53/1/1N4007.html}
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=\textwidth]{img/SimulacionRectificadorOndaCompleta.jpg}
+				\caption{Simulación Rectificador Onda Completa}
+				\label{fig:simulacion_rectificador_onda_completa}
+			\end{figure}
+			
+			En la práctica, dependiendo de la resistencia de carga se puede ver afectado el desempeño del circuito. En nuestro caso, al conectarle los reguladores obteníamos un voltaje a la salida del rectificador de $15,94V$
+			
+			\newpage
+			
+			\item \textbf{Diseño de los reguladores de tensión}
+			\begin{enumerate}
+				\item Regulador paralelo con diodo Zener
+				
+				\begin{figure}[h]
+					\centering
+					\includegraphics[width=\textwidth]{img/EsquemaReguladorZener.jpg}
+					\caption{Esquema Regulador Zener}
+					\label{fig:regulador_zener}
+				\end{figure}
+				
+				\textbf{Cálculos} \par
+				Se utilizó un diodo zener 1N752 que posee las siguientes características:
+				$$I_{Zmax}=65mA$$
+				$$Vz=5,6V$$
+				
+				Link del datasheet 1N752:\par  \url{https://www.alldatasheet.com/html-pdf/36705/JGD/1N752/44/1/1N752.html}
+				
+				Por criterio de diseño calculamos la $I_{Zmin}$ como:
+				$$I_{Zmin}=0,1\ I_{Zmax}=6,5mA$$
+				Haciendo Ley de Kirchhoff de las corrientes sabemos que $$I_{Tot}=I_{Z}+I_{L}$$ \par
+				Calculamos los valores máximo y mínimo que puede tomar $R_S$ para las dos resistencias con las que vamos a variar la carga del circuito ($R_L(m\acute{a}x)=3k\Omega$ y $R_L(min)=2,2k\Omega$):
+				$$R_{S(m\acute{a}x)}=\frac{V_{in}- V_Z}{I_{Tot}}=\frac{V_{in}- V_Z}{I_{Z(min)}+I_{L(m\acute{a}x)}}=\frac{15V-5,6V}{6,5mA+\frac{V_Z}{R_{L(min)}}}=\frac{15V-5,6V}{6,5mA+\frac{5,6V}{2,2k\Omega}}$$
+				$$R_{S(m\acute{a}x)}=1039\Omega$$
+				
+				$$R_{S(min)}=\frac{V_{in}- V_Z}{I_{Tot}}=\frac{V_{in}- V_Z}{I_{Z(m\acute{a}x)}+I_{L(min)}}=\frac{15V-5,6V}{65mA+\frac{V_Z}{R_{L(m\acute{a}x)}}}=\frac{15V-5,6V}{65mA+\frac{5,6V}{3k\Omega}}$$
+				$$R_{S(min)}=140\Omega$$
+				
+				Una $R_S$ que se encuentra dentro de ese rango es, por ejemplo, $R_S=1k\Omega$ y es el resistor que elegimos a utilizar en este trabajo.\par
+				
+				A partir de esta selección podemos calcular la $I_{Tot}$: $$I_{Tot}=\frac{V_{in}- V_Z}{R_S}=\frac{15V-5,6V}{1k\Omega}=9,4mA$$
+				y la potencia disipada por $R_S$ será: $$P_{Rs}=V_{Rs}\ I_{Tot}=9,4V\ 9,4mA=88,36mA$$
+				
+				\newpage
+				\textbf{Simulación} \par
+				\begin{figure}[h]
+					\centering
+					\begin{subfigure}[b]{0.7\textwidth}
+						\centering
+						\includegraphics[width=\textwidth]{img/RegZenerLmin.jpg}
+						\caption{Carga mínima}
+						\label{fig:regulador_zener_RLmin}
+					\end{subfigure}
+					\hfill
+					\begin{subfigure}[b]{0.7\textwidth}
+						\centering
+						\includegraphics[width=\textwidth]{img/RegZenerLmax.jpg}
+						\caption{Carga máxima}
+						\label{fig:regulador_zener_RLmax}
+					\end{subfigure}
+					\caption{Simulación de Regulador Zener}
+					\label{fig:Simulación de Regulador Zener}
+				\end{figure}
+				
+				\newpage
+				
+			\item Regulador con Zener y seguidor de emisor
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=\textwidth]{img/EsquemaReguladorZenerConSeguidorDeEmisor.jpg}
+				\caption{Esquema Regulador Zener Con Seguidor De Emisor}
+				\label{fig:regulador_zener_con_seguidor_de_emisor}
+			\end{figure}
+			
+			\textbf{Cálculos} \par
+			Se utilizó un transistor bjt BC548B que posee las siguientes características:
+			$$h_{FE}=290$$
+			$$V_{CE(max)}=30V$$
+			$$I_{C(max)}=100mA$$
+			$$P_{D(max)}=625mW$$
+			
+			Link del datasheet BC548B89:\par  \url{https://www.alldatasheet.com/html-pdf/11557/ONSEMI/BC548B/180/1/BC548B.html}
+			\par
+			Por inspección el voltaje en el emisor va a ser el voltaje de enclavamiento en el diodo zener menos la caída de 0,7V entre la base y el emisor: $$V_E=V_Z-0,7V=5,6V-0,7V=4,9V$$
+			
+			Por lo tanto, el valor de $V_{CEQ}$ es: $$V_{CEQ}=15V-4,9V=10,1V$$
+			
+			La corriente por la resistencia $R_S$ será: $$I_{Rs}=\frac{V_{in}- V_Z}{R_S}=\frac{15V-5,6V}{1k\Omega}=9,4mA$$
+			
+			Para la carga $R_L=2,2k\Omega$ vamos a tener los siguientes valores:
+			$$I_{CQ}=\frac{4,9V}{2,2k\Omega}=2,22mA$$
+			$$I_B=\frac{I_{CQ}}{\beta}=\frac{2,22mA}{290}=7,66\mu A$$
+			Y la potencia que disipa el transistor en este caso es:
+			$$P_D=V_{CEQ}\ I_{CQ}=10,1V\ 2,22mA=22,4mW$$
+			
+			Para la carga $R_L=3k\Omega$ vamos a tener los siguientes valores:
+			$$I_{CQ}=\frac{4,9V}{3k\Omega}=1,63mA$$
+			$$I_B=\frac{I_{CQ}}{\beta}=\frac{1,63mA}{290}=5,62\mu A$$
+			Y la potencia que disipa el transistor en este caso es:
+			$$P_D=V_{CEQ}\ I_{CQ}=10,1V\ 1,63mA=16,46mW$$
+			
+			\newpage
+			
+			\textbf{Simulación} \par
+			\begin{figure}[h]
+				\centering
+				\begin{subfigure}[b]{0.7\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{img/SeguidorDeEmisor2_2K.jpg}
+					\caption{Carga mínima}
+					\label{fig:reg_zener_seguidor_emisor_RLmin}
+				\end{subfigure}
+				\hfill
+				\begin{subfigure}[b]{0.7\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{img/SeguidorDeEmisor3K.jpg}
+					\caption{Carga máxima}
+					\label{fig:reg_zener_seguidor_emisor_RLmax}
+				\end{subfigure}
+				\caption{Simulación de Regulador Zener con Seguidor de Emisor}
+				\label{fig:Simulación de Regulador Zener con Seguidor de Emisor}
+			\end{figure}
+			
+			\item Regulador lineal LM317
+			
+			\newpage
+			
+			\end{enumerate}
 		\end{enumerate}
-	\section{Resultados}
-	Presentar los resultados obtenidos. Se pueden incluir tablas, gráficos o imágenes.
-	
-	%\section{Discusión}
-	%Análisis de los resultados y comparación con la teoría o trabajos previos.
-	
+	\newpage
 	\section{Conclusión}
-	Resume las conclusiones del trabajo.
-	
+ 
 \end{document}
